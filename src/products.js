@@ -77,6 +77,22 @@ const products = [
     'rating': 4,
     'numReviews': 12,
   },
+  {
+    '_id': '7',
+    'name': 'Samsung Galaxy S21 Ultra 5G',
+    'image': '/images/samsung.jpg',
+    'description':
+      'Introducing the Samsung Galaxy S21 Ultra 5G. A revolutionary smartphone with a 108MP camera, 5G connectivity, and a 120Hz display.',
+    'brand': 'Samsung',
+    'category': 'Electronics',
+    'price': 1199.99,
+    'countInStock': 3,
+    'rating': 4.8,
+    'numReviews': 15,
+    'color': 'Phantom Black',
+    'screenSize': '6.8 inches',
+    'batteryCapacity': '5000mAh',
+  },
 ]
 
 
