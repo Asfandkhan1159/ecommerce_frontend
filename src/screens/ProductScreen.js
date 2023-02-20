@@ -5,6 +5,7 @@ import { listProducts } from '../actions/productActions';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 import Rating from '../components/Rating';
+import { listProductDetails } from '../actions/productActions';
 
 
 function ProductScreen() {
@@ -15,24 +16,34 @@ function ProductScreen() {
 
   
 
-const { loading, error, product } = useSelector(state => state.productList);
-
+// const { loading, error, products } = useSelector(state => state.productList);
+const { loading, error, product } = useSelector(state => state.productDetails);
+console.log(loading)
+console.log(error)
+// console.log(products)
 useEffect(() => {
   dispatch(listProducts(id));
 }, [dispatch,id]);
-
+useEffect(() => {
+  dispatch(listProductDetails(id));
+}, [dispatch, id]);
+useEffect(() =>{
+  dispatch(listProductDetails(id))
+  console.log('products')
+},[])
 if (loading) {
   return <div>Loading...</div>;
 }
 
 if (error) {
+  console.log(error)
   return <div>Product Not Found</div>;
 }
 
 
   
   if (!product) {
-    return <div>Product Not Found</div>;
+    return <div>Product Not Founds</div>;
   }
   
   return (
@@ -47,7 +58,7 @@ if (error) {
   ) : (
     <Row>
       <Col md={6}>
-        <Image src={product.image} alt={product.name} fluid />
+        <Image src={product.image} alt={product.title} fluid />
       </Col>
       <Col md={3}>
         <ListGroup variant="flush">
@@ -56,7 +67,7 @@ if (error) {
           </ListGroup.Item>
           <ListGroup.Item>
             <Rating
-              value={product.rating}
+            
               text={`${product.numReviews} reviews`}
               color={"#f8e825"}
             />
@@ -79,13 +90,13 @@ if (error) {
             <ListGroup.Item>
               <Row>
                 <Col>Status:</Col>
-                <Col>{product.countInStock > 0 ? "In Stock" : "Out of Stock"}</Col>
+            
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
                 onClick={() => {
-                  navigate(`/cart/${product._id}?qty=1`);
+                  navigate(`/cart/${product.id}?qty=1`);
                 }}
                 className="btn-block"
                 type="button"
