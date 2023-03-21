@@ -13,7 +13,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto flex justify-end">
             
-          <LinkContainer to='/cart'>
+          <LinkContainer to='/product/:id/cart/:id'>
             <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
             </LinkContainer>
             
